@@ -1,0 +1,14 @@
+Music-Data-Vizualization/
+├── index.html        Home (the story)
+├── explore.html      Explore (the data explained)
+├── compare.html      Compare (genre duet + rank mismatch)
+├── css/style.css     one stylesheet for all three pages
+├── assets/staff.svg  the musical background tile
+├── data/music.csv    the single dataset
+└── js/
+    ├── data.js       shared store: loads the CSV once, holds shared state
+    ├── ui.js         tooltip, genre chips, error banner, nav playhead
+    ├── main.js       Home orchestrator (draws the four charts, Scrollama)
+    ├── bars.js, bubbles.js, heatmap.js, barsRecolored.js   the four Home charts
+    ├── explore.js    Explore page logic
+    └── compare.js    Compare page logic

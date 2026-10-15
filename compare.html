@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compare · Music Genre Evolution</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip" href="#duet">Skip to the duet</a>
+
+  <nav class="topnav" aria-label="Main">
+    <a class="brand" href="index.html"><span aria-hidden="true">♪</span>Music Genre Evolution</a>
+    <a href="index.html">Home</a>
+    <a href="explore.html">Explore</a>
+    <a href="compare.html" aria-current="page">Compare</a>
+    <div class="playhead" aria-hidden="true"></div>
+  </nav>
+
+  <main>
+    <header class="hero short">
+      <p class="tempo">♪ Two voices, one question</p>
+      <h1>Compare <em>genres</em>.</h1>
+      <p class="lede">Size is one voice. Heat is the other. Hear them side by side.</p>
+    </header>
+
+    <section class="section single" id="duet">
+      <div class="section-head">
+        <p class="tempo">The duet</p>
+        <h2>Two genres, year by year.</h2>
+        <p>Pick any two. Hover a dot for the details.</p>
+      </div>
+      <div class="pick">
+        <label>Genre A <select id="sel-a"></select></label>
+        <span class="vs">vs</span>
+        <label>Genre B <select id="sel-b"></select></label>
+      </div>
+      <p class="verdict" id="verdict" aria-live="polite"></p>
+      <div class="duet">
+        <div class="paper" id="duet-hot" aria-label="Artist hotness over time"></div>
+        <div class="paper" id="duet-count" aria-label="Artists per year over time"></div>
+      </div>
+    </section>
+
+    <section class="section single" id="mismatch">
+      <div class="section-head">
+        <p class="tempo">Rank mismatch</p>
+        <h2>Rank by artists. Then by hotness.</h2>
+        <p>Lines that tilt are the story. Hover a genre to follow it. Your duet picks are drawn thick.</p>
+      </div>
+      <div class="seg" id="era" role="group" aria-label="Era">
+        <button type="button" data-era="all" aria-pressed="true">All years</button>
+        <button type="button" data-era="pre" aria-pressed="false">Before 2000</button>
+        <button type="button" data-era="post" aria-pressed="false">2000 on</button>
+      </div>
+      <div class="paper" id="slope" aria-label="Slopegraph of rank by artists versus rank by hotness"></div>
+      <p class="slope-note" id="slope-note" aria-live="polite"></p>
+    </section>
+
+    <section class="section single" id="setlist">
+      <div class="section-head">
+        <p class="tempo">Next on the setlist</p>
+        <h2>Four more notes for the story.</h2>
+        <p>Your raw file already has the columns for each.</p>
+      </div>
+      <div class="setlist">
+        <article class="setcard"><span class="note" aria-hidden="true">♩</span><h3>Familiarity</h3><p>Famous is not the same as hot. Who is known, but cooling?</p><small>Uses: artist.familiarity</small></article>
+        <article class="setcard"><span class="note" aria-hidden="true">♪</span><h3>Tempo</h3><p>Do the hottest genres move faster?</p><small>Uses: song.tempo</small></article>
+        <article class="setcard"><span class="note" aria-hidden="true">♫</span><h3>Duration</h3><p>Are hits getting shorter?</p><small>Uses: song.duration</small></article>
+        <article class="setcard"><span class="note" aria-hidden="true">♭</span><h3>Time signature</h3><p>Is 4/4 still king, or do hot genres break the beat?</p><small>Uses: song.time_signature</small></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="btn-row">
+      <a class="btn" href="explore.html">Explore the data</a>
+      <a class="btn ghost" href="index.html">Back to the story</a>
+    </div>
+    <p>Data: music.xlsx (MusicBrainz-style), aggregated by build_music_csv.py. Hotness runs 0 to 1.</p>
+  </footer>
+
+  <script type="module" src="js/compare.js"></script>
+</body>
+</html>

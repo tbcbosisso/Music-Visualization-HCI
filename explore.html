@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Explore · Music Genre Evolution</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip" href="#lens-section">Skip to the lens</a>
+
+  <nav class="topnav" aria-label="Main">
+    <a class="brand" href="index.html"><span aria-hidden="true">♪</span>Music Genre Evolution</a>
+    <a href="index.html">Home</a>
+    <a href="explore.html" aria-current="page">Explore</a>
+    <a href="compare.html">Compare</a>
+    <div class="playhead" aria-hidden="true"></div>
+  </nav>
+
+  <main>
+    <header class="hero short">
+      <p class="tempo">♪ The score behind the story</p>
+      <h1>Explore the <em>data</em>.</h1>
+      <p class="lede">One CSV feeds every chart. Here is what's in it, how it was tuned, and how to play with it.</p>
+      <div class="stats" id="stats" aria-label="Dataset at a glance"></div>
+    </header>
+
+    <section class="section single" id="score">
+      <div class="section-head">
+        <p class="tempo">The score</p>
+        <h2>Six columns. One row per genre and year.</h2>
+      </div>
+      <table class="schema">
+        <thead><tr><th>Column</th><th>Meaning</th><th>Range</th></tr></thead>
+        <tbody>
+          <tr><td><code>genre</code></td><td>Genre family, after merging messy tags</td><td>text</td></tr>
+          <tr><td><code>year</code></td><td>Release year</td><td>years with data</td></tr>
+          <tr><td><code>artist_count</code></td><td>Unique artists in that genre-year</td><td>3 or more</td></tr>
+          <tr><td><code>avg_artist_hotness</code></td><td>How hot the artists are, averaged</td><td>0 to 1</td></tr>
+          <tr><td><code>avg_song_hotness</code></td><td>How hot the songs are, averaged</td><td>0 to 1</td></tr>
+          <tr><td><code>song_count</code></td><td>Songs counted</td><td>whole number</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section single" id="arrangement">
+      <div class="section-head">
+        <p class="tempo">The arrangement</p>
+        <h2>How raw rows became this score.</h2>
+        <p>Six steps in build_music_csv.py.</p>
+      </div>
+      <ol class="chain">
+        <li><strong>Load</strong><span>Read music.xlsx, sheet “music”.</span></li>
+        <li><strong>Clean</strong><span>Drop year 0 and negative hotness placeholders.</span></li>
+        <li><strong>Window</strong><span>Keep 1960 to 2010.</span></li>
+        <li><strong>Map</strong><span>About 80 messy genre tags become a few clean families.</span></li>
+        <li><strong>Aggregate</strong><span>One row per genre-year: artists, hotness, songs.</span></li>
+        <li><strong>Filter</strong><span>Drop genre-years with fewer than 3 artists.</span></li>
+      </ol>
+      <p class="caveat">Blank cells mean “too thin to trust”, not zero. This is a sample of the industry, so read patterns, not exact market size.</p>
+    </section>
+
+    <div class="tuner" id="tuner" aria-label="Genre filter shared by every chart"></div>
+
+    <section class="section single" id="lens-section">
+      <div class="section-head">
+        <p class="tempo">Change the lens</p>
+        <h2>Same data. Change the metric, change the winner.</h2>
+        <p>Pick a metric, a year range, and the genres above. Everything below follows.</p>
+      </div>
+
+      <div class="filters">
+        <label>Metric <select id="metric"></select></label>
+        <label>From <select id="yr-from"></select></label>
+        <label>To <select id="yr-to"></select></label>
+        <button class="spacer" id="reset" type="button">Reset</button>
+      </div>
+
+      <div class="paper" id="lens" aria-label="Genres ranked by the chosen metric"></div>
+      <p class="lens-note" id="lens-note" aria-live="polite"></p>
+    </section>
+
+    <section class="section single" id="rows">
+      <div class="section-head">
+        <p class="tempo">The rows</p>
+        <h2>Every genre-year, sortable.</h2>
+        <p>Click a header to sort. Colors show hotness. Filters above apply.</p>
+      </div>
+      <div class="paper">
+        <div class="table-wrap">
+          <table class="data" id="data-table"><thead></thead><tbody></tbody></table>
+        </div>
+      </div>
+      <p class="row-count" id="row-count" aria-live="polite"></p>
+      <div class="btn-row"><button class="btn ghost" id="download" type="button">Download these rows (CSV)</button></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="btn-row">
+      <a class="btn" href="compare.html">Compare genres</a>
+      <a class="btn ghost" href="index.html">Back to the story</a>
+    </div>
+    <p>Data: music.xlsx (MusicBrainz-style), aggregated by build_music_csv.py. Hotness runs 0 to 1.</p>
+  </footer>
+
+  <script type="module" src="js/explore.js"></script>
+</body>
+</html>

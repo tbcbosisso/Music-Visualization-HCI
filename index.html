@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music Genre Evolution</title>
+  <meta name="description" content="Counting artists hides which music genres are actually thriving. A four-movement data story." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip" href="#sec-1">Skip to the charts</a>
+
+  <nav class="topnav" aria-label="Main">
+    <a class="brand" href="index.html"><span aria-hidden="true">♪</span>Music Genre Evolution</a>
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="explore.html">Explore</a>
+    <a href="compare.html">Compare</a>
+    <div class="playhead" aria-hidden="true"></div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <p class="tempo">♪ A data symphony in four movements</p>
+      <h1>The biggest genre isn't the <em>liveliest</em> one.</h1>
+      <p class="lede">Counting artists hides which genres are really thriving. Listen again, by hotness.</p>
+      <div><a class="btn" href="#sec-1">Begin ↓</a></div>
+      <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </header>
+
+    <div class="tuner" id="tuner" aria-label="Genre filter shared by every chart"></div>
+
+    <section class="movement" id="sec-1">
+      <div class="story-text">
+        <p class="tempo">I · Allegro</p>
+        <h2>For decades, we've counted artists.</h2>
+        <p>The big names stay big.</p>
+        <p class="hint">Drag the slider. The pale bar is the year before.</p>
+      </div>
+      <div class="paper story-chart" id="chart-bars"></div>
+    </section>
+
+    <section class="movement" id="sec-2">
+      <div class="story-text">
+        <p class="tempo">II · Crescendo</p>
+        <h2>But count ≠ vitality.</h2>
+        <p>Rock grows in size, not in heat.</p>
+        <p class="hint">Press Play. Speed sets the tempo. Pick genres at the right.</p>
+      </div>
+      <div class="paper story-chart" id="chart-bubbles"></div>
+    </section>
+
+    <section class="movement" id="sec-3">
+      <div class="story-text">
+        <p class="tempo">III · The score</p>
+        <h2>The pattern holds, year after year.</h2>
+        <p>Rock stays mid-tone. Smaller genres flare.</p>
+        <p class="hint">Click a cell: every chart jumps to that year.</p>
+      </div>
+      <div class="paper story-chart" id="chart-heatmap"></div>
+    </section>
+
+    <section class="movement" id="sec-4">
+      <div class="story-text">
+        <p class="tempo">IV · Finale</p>
+        <h2>The biggest genre isn't the liveliest one.</h2>
+        <p>Same bars. New eyes.</p>
+        <div class="btn-row">
+          <a class="btn" href="explore.html">Open the data</a>
+          <a class="btn ghost" href="compare.html">Compare genres</a>
+        </div>
+      </div>
+      <div class="paper story-chart" id="chart-bars-recolor"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ask what you're really measuring.</p>
+    <p>Data: music.xlsx (MusicBrainz-style), aggregated by build_music_csv.py. Hotness runs 0 to 1.</p>
+  </footer>
+
+  <script src="https://unpkg.com/scrollama"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
